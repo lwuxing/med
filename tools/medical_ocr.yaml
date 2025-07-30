@@ -1,0 +1,61 @@
+identity:
+  name: "medical_ocr"
+  author: "lwuxing"
+  label:
+    en_US: OCR 
+    zh_Hans: OCR 
+
+description:
+  human:
+    en_US: Upload an image or PDF file, send it to an OCR API, and return the markdown content as a downloadable file.
+    zh_Hans: 上传图片，调用 OCR 接口，返回内容。
+  llm: 将上传的图片文件转换为文本返回。
+
+parameters:
+  - name: file
+    type: files
+    required: true
+    label:
+      en_US: Upload File
+      zh_Hans: 上传文件
+    human_description:
+      en_US: Upload the image or PDF file to be converted.
+      zh_Hans: 上传需要转换的图片或 PDF 文件。
+    llm_description: 上传的文件（图片或 PDF 文件）。
+    form: llm
+  - name: ocr_type
+    type: string # 参数类型
+    required: true
+    label:
+      en_US: ocr type
+      zh_Hans: ocr识别类型
+    human_description:
+      en_US: used for selecting the result type, text or link
+      zh_Hans: 用于选择识别类型，使用纯OCR还是带表格识别
+    form: llm 
+
+
+  # - name: ocr_type
+  #   type: select # 参数类型
+  #   required: true
+  #   options: # 下拉框选项
+  #     - value: ocr_only
+  #       label:
+  #         en_US: ocr
+  #         zh_Hans: 纯文字识别
+  #     - value: table
+  #       label:
+  #         en_US: table
+  #         zh_Hans: 带表格识别
+  #   default: ocr_only
+  #   label:
+  #     en_US: ocr type
+  #     zh_Hans: ocr识别类型
+  #   human_description:
+  #     en_US: used for selecting the result type, text or link
+  #     zh_Hans: 用于选择识别类型，使用纯OCR还是带表格识别
+  #   form: form # 表单类型，form表示这个参数需要由用户在对话开始前在前端填写
+
+extra:
+  python:
+    source: tools/medical_ocr.py
